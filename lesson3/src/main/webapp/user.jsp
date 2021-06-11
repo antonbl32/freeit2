@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hello ${name}</title>
+    <title>Hello <%=request.getParameter("name") %></title>
 </head>
 <body>
-
+    <div class="wrap-input100 validate-input m-b-16">
+        <p>Your name is <%=request.getParameter("name") %></p>
+    </div>
 </body>
 </html>

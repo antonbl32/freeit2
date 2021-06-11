@@ -2,9 +2,12 @@ package by.anton.security;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Authentication {
     private static Map<String,String> users=new HashMap<>();
+    private static Map<String,Integer> userCooki=new HashMap<>();
+    private static Random random=new Random();
     private static Authentication authentication;
     private Authentication(){};
     public static Authentication init(){
@@ -28,12 +31,14 @@ public class Authentication {
         }
     }
 
-    public boolean checkUser(String name,String password){
+    public Integer checkUser(String name,String password){
         if(users.entrySet().stream().filter(s->s.getKey().equalsIgnoreCase(name))!=null
                 && users.get(name).equalsIgnoreCase(password) ){
-            return true;
+            int key= random.nextInt();
+            userCooki.put(name,key);
+            return key;
         }else {
-            return false;
+            return null;
         }
     }
 }
